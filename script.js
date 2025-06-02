@@ -21,6 +21,7 @@
 
   <script>
     function calculate() {
+  console.log("Calculate function called");
       const n = parseFloat(document.getElementById('teeth').value);
       const currentOffsetInput = document.getElementById('currentOffset').value;
       const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
