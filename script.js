@@ -2,55 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Gear Calculator</title>
+  <title>Plane Crazy Gear Calculator</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <h1>Gear Calculator for Plane Crazy</h1>
 
-  <h1>Gear Calculator</h1>
+  <label>Number of Teeth (n):
+    <input type="number" id="teeth" value="8" min="1" />
+  </label>
   
-  <input id="teeth" type="number" placeholder="Number of teeth" />
-  <input id="currentOffset" type="number" placeholder="Current offset" />
+  <label>Current Offset (optional):
+    <input type="number" id="currentOffset" placeholder="Enter offset (default 0)" />
+  </label>
   
   <button onclick="calculate()">Calculate</button>
-  
-  <div id="teethResult"></div>
-  <div id="angleResult"></div>
-  <div id="halfAngleResult"></div>
-  <div id="radiusResult"></div>
-  <div id="offsetResult"></div>
 
-  <script>
-    function calculate() {
-  console.log("Calculate function called");
-      const n = parseFloat(document.getElementById('teeth').value);
-      const currentOffsetInput = document.getElementById('currentOffset').value;
-      const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
+  <h2>Results:</h2>
+  <div id="results">
+    <div class="result-box" id="teethResult"></div>
+    <div class="result-box" id="angleResult"></div>
+    <div class="result-box" id="halfAngleResult"></div>
+    <div class="result-box" id="radiusResult"></div>
+    <div class="result-box" id="offsetResult"></div>
+  </div>
 
-      if (n <= 0 || isNaN(n)) {
-        alert("Enter a valid number of teeth");
-        return;
-      }
-      if (isNaN(currentOffset)) {
-        alert("Enter a valid number for current offset");
-        return;
-      }
-
-      const a = 360 / n;
-      const b = a / 2;
-      const r = Math.cos(toRad(b)) / Math.sin(toRad(a));
-      const offset = r - currentOffset;
-
-      document.getElementById('teethResult').textContent = `Number of Teeth (n): ${n}`;
-      document.getElementById('angleResult').textContent = `Angle per Tooth (a): ${a.toFixed(4)}°`;
-      document.getElementById('halfAngleResult').textContent = `Half-Angle (b): ${b.toFixed(4)}°`;
-      document.getElementById('radiusResult').textContent = `Radius (r): ${r.toFixed(6)}`;
-      document.getElementById('offsetResult').textContent = `Compressor Offset (r - current offset): ${offset.toFixed(6)}`;
-    }
-
-    function toRad(deg) {
-      return deg * (Math.PI / 180);
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
