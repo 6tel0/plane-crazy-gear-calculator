@@ -1,1 +1,63 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 2em auto;
+  max-width: 480px;
+  background-color: #2e1a47; /* tumelilla taust */
+  color: #d8c6f0; /* hele lilla tekst */
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.3);
+}
 
+label {
+  display: block;
+  margin-bottom: 1em;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+input[type=number] {
+  margin-left: 0.5em;
+  width: 80px;
+  padding: 0.3em 0.5em;
+  border: 1.5px solid #6e4ea1; /* lillakas äär */
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #4a327a; /* tumedam sisemus */
+  color: #d8c6f0;
+  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+}
+
+input[type=number]:focus {
+  outline: none;
+  border-color: #b99cff; /* hele lillakas */
+  box-shadow: 0 0 6px #b99cffaa;
+  background-color: #5c44a3;
+  color: #fff;
+}
+
+button {
+  padding: 0.5em 1.2em;
+  background-color: #6e4ea1; /* lillakas nupp */
+  color: #f0e9ff;
+  border: none;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #8f6ecc; /* heledam lillakas */
+}
+
+pre {
+  background: #3b2a66; /* tume lilla kast */
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(117, 91, 207, 0.5);
+  font-size: 1.1rem;
+  white-space: pre-wrap;
+  color: #e3dbff;
+}
