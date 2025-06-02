@@ -59,3 +59,14 @@ h1, h2 {
   font-weight: 600;
   white-space: pre-wrap;
 }
+
+#gear-container svg {
+  background: #2a0944; /* same dark purple background */
+  border-radius: 12px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+#gear-container svg:hover {
+  transform: rotate(20deg);
+  filter: drop-shadow(0 0 5px #a580ff);
+}
