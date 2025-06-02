@@ -28,3 +28,12 @@ function toRad(deg) {
   return deg * (Math.PI / 180);
 }
 
+function copyToClipboard(elementId) {
+  const text = document.getElementById(elementId).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert("Copied: " + text);
+  }).catch(err => {
+    console.error('Failed to copy text: ', err);
+  });
+}
+
