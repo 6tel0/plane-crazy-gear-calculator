@@ -59,20 +59,3 @@ h1, h2 {
   font-weight: 600;
   white-space: pre-wrap;
 }
-
-<img src="https://static.vecteezy.com/system/resources/thumbnails/012/289/634/small_2x/business-icon-isolated-on-transparent-background-free-png.png" alt="Gear Icon"width="100" height="100">
-
-.copy-btn {
-  background-color: #6a0dad; /* Dark purple */
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  margin-top: 6px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.copy-btn:hover {
-  background-color: #5c099c;
-}
