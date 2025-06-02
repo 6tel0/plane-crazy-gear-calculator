@@ -1,32 +1,30 @@
 function calculate() {
   const n = parseFloat(document.getElementById('teeth').value);
-  const angleOffset = parseFloat(document.getElementById('angleOffset').value);
+  const currentOffsetInput = document.getElementById('currentOffset').value;
+  const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
 
   if (n <= 0 || isNaN(n)) {
     alert("Enter a valid number of teeth");
     return;
   }
-  if (angleOffset < 0 || isNaN(angleOffset)) {
-    alert("Enter a valid angle block offset (0 or more)");
+  if (isNaN(currentOffset)) {
+    alert("Enter a valid number for current offset");
     return;
   }
 
   const a = 360 / n;
   const b = a / 2;
   const r = Math.cos(toRad(b)) / Math.sin(toRad(a));
-  const baseOffset = 1 - r;
-  const actualOffset = baseOffset * angleOffset;
+  const offset = 1 - r + currentOffset;
 
-  document.getElementById('results').textContent = `
-Number of Teeth (n): ${n}
-Angle per Tooth (a): ${a.toFixed(4)}°
-Half-Angle (b): ${b.toFixed(4)}°
-Radius (r): ${r.toFixed(6)}
-Base Compressor Offset (1 - r): ${baseOffset.toFixed(6)}
-Actual Compressor Offset (with angle block offset): ${actualOffset.toFixed(6)} blocks
-`;
+  document.getElementById('teethResult').textContent = `Number of Teeth (n):\n${n}`;
+  document.getElementById('angleResult').textContent = `Angle per Tooth (a):\n${a.toFixed(4)}°`;
+  document.getElementById('halfAngleResult').textContent = `Half-Angle (b):\n${b.toFixed(4)}°`;
+  document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
+  document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
 }
 
 function toRad(deg) {
   return deg * (Math.PI / 180);
 }
+
