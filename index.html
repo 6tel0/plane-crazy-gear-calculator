@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plane Crazy Gear Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Gear Calculator for Plane Crazy</h1>
 
+  <label>Number of Teeth (n): 
+    <input type="number" id="teeth" value="8" min="1" step="1" />
+  </label>
+
+  <label>Angle Block Offset (blocks): 
+    <input type="number" id="angleOffset" value="3" min="0" step="0.1" />
+  </label>
+
+  <button onclick="calculate()">Calculate</button>
+
+  <h2>Results:</h2>
+  <pre id="results"></pre>
+
+  <script src="script.js"></script>
+</body>
+</html>
