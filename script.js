@@ -1,33 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Plane Crazy Gear Calculator</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1>Gear Calculator for Plane Crazy</h1>
+function calculate() {
+  const n = parseFloat(document.getElementById('teeth').value);
+  const currentOffsetInput = document.getElementById('currentOffset').value;
+  const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
 
-  <label>Number of Teeth (n):
-    <input type="number" id="teeth" value="8" min="1" />
-  </label>
-  
-  <label>Current Offset (optional):
-    <input type="number" id="currentOffset" placeholder="Enter offset (default 0)" />
-  </label>
-  
-  <button onclick="calculate()">Calculate</button>
+  if (n <= 0 || isNaN(n)) {
+    alert("Enter a valid number of teeth");
+    return;
+  }
+  if (isNaN(currentOffset)) {
+    alert("Enter a valid number for current offset");
+    return;
+  }
 
-  <h2>Results:</h2>
-  <div id="results">
-    <div class="result-box" id="teethResult"></div>
-    <div class="result-box" id="angleResult"></div>
-    <div class="result-box" id="halfAngleResult"></div>
-    <div class="result-box" id="radiusResult"></div>
-    <div class="result-box" id="offsetResult"></div>
-  </div>
+  const a = 360 / n;
+  const b = a / 2;
+  const r = Math.cos(toRad(b)) / Math.sin(toRad(a));
+  const offset = 1 - r + currentOffset;
 
-  <script src="script.js"></script>
-</body>
-</html>
+  document.getElementById('teethResult').textContent = `Number of Teeth (n):\n${n}`;
+  document.getElementById('angleResult').textContent = `Angle per Tooth (a):\n${a.toFixed(4)}°`;
+  document.getElementById('halfAngleResult').textContent = `Half-Angle (b):\n${b.toFixed(4)}°`;
+  document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
+  document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
+}
+
+function toRad(deg) {
+  return deg * (Math.PI / 180);
+}
 
