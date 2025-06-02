@@ -1,63 +1,61 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 2em auto;
-  max-width: 480px;
-  background-color: #2e1a47; /* tumelilla taust */
-  color: #d8c6f0; /* hele lilla tekst */
-  padding: 1em;
-  border-radius: 10px;
-  box-shadow: 0 2px 12px rgb(0 0 0 / 0.3);
+  margin: 2em;
+  background-color: #2e0854; /* dark purple */
+  color: #d4c6fc; /* light purple text */
 }
 
-label {
-  display: block;
-  margin-bottom: 1em;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-input[type=number] {
-  margin-left: 0.5em;
+input {
   width: 80px;
+  margin-left: 0.5em;
+  border-radius: 5px;
+  border: none;
   padding: 0.3em 0.5em;
-  border: 1.5px solid #6e4ea1; /* lillakas äär */
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: #4a327a; /* tumedam sisemus */
-  color: #d8c6f0;
-  transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+  font-size: 1em;
+  background-color: #4b2979;
+  color: #d4c6fc;
 }
 
-input[type=number]:focus {
-  outline: none;
-  border-color: #b99cff; /* hele lillakas */
-  box-shadow: 0 0 6px #b99cffaa;
-  background-color: #5c44a3;
-  color: #fff;
+input::placeholder {
+  color: #b39ddb;
 }
 
 button {
-  padding: 0.5em 1.2em;
-  background-color: #6e4ea1; /* lillakas nupp */
-  color: #f0e9ff;
+  margin-left: 1em;
+  padding: 0.5em 1em;
+  background-color: #6a4bcf;
   border: none;
-  border-radius: 7px;
-  font-weight: 600;
-  font-size: 1rem;
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: bold;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #8f6ecc; /* heledam lillakas */
+  background-color: #8e6ff5;
 }
 
-pre {
-  background: #3b2a66; /* tume lilla kast */
+h1, h2 {
+  margin-bottom: 1em;
+}
+
+#results {
+  margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.result-box {
+  flex: 1 1 200px;
+  background-color: #4b2979;
   padding: 1em;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(117, 91, 207, 0.5);
-  font-size: 1.1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #6a4bcf88;
+  min-width: 180px;
+  color: #e0dfff;
+  font-weight: 600;
   white-space: pre-wrap;
-  color: #e3dbff;
 }
