@@ -1,29 +1,19 @@
 function calculate() {
+  // Peida algus-sõnum
+  document.getElementById('startMessage').style.display = 'none';
+
   const n = parseFloat(document.getElementById('teeth').value);
   const currentOffsetInput = document.getElementById('currentOffset').value;
   const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
-  const welcomeMsg = document.getElementById('welcomeMessage');
 
   if (n <= 0 || isNaN(n)) {
     alert("Enter a valid number of teeth");
-    welcomeMsg.style.opacity = 1;
-    welcomeMsg.style.pointerEvents = 'auto';
-    document.getElementById('results').style.opacity = 0.5;
-    document.getElementById('explanationBox').style.display = 'none';
     return;
   }
   if (isNaN(currentOffset)) {
     alert("Enter a valid number for current offset");
-    welcomeMsg.style.opacity = 1;
-    welcomeMsg.style.pointerEvents = 'auto';
-    document.getElementById('results').style.opacity = 0.5;
-    document.getElementById('explanationBox').style.display = 'none';
     return;
   }
-
-  // hide welcome message on successful calculation
-  welcomeMsg.style.opacity = 0;
-  welcomeMsg.style.pointerEvents = 'none';
 
   const a = 360 / n;
   const b = a / 2;
@@ -36,7 +26,7 @@ function calculate() {
   document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
   document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
 
-  // Show explanation
+  // Näita seletust
   document.getElementById('explanationBox').style.display = 'block';
   document.getElementById('explanationText').innerHTML = `
     <b>How it works:</b><br>
@@ -53,8 +43,10 @@ function calculate() {
 
     This tells you how much to compress to perfectly align your gear in Plane Crazy.
   `;
+}
 
-  document.getElementById('results').style.opacity = 1;
+function toRad(deg) {
+  return deg * (Math.PI / 180);
 }
 
   
