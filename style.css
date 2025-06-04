@@ -1,8 +1,8 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 2em;
-  background-color: #2e0854; /* dark purple */
-  color: #d4c6fc; /* light purple text */
+  background-color: #2e0854;
+  color: #d4c6fc;
 }
 
 input {
@@ -46,6 +46,12 @@ h1, h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#results.visible {
+  opacity: 1;
 }
 
 .result-box {
@@ -61,14 +67,29 @@ h1, h2 {
 }
 
 .explanation-box {
-  background-color: #2e004f; /* dark purple */
+  background-color: #2e004f;
   color: #fff;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   line-height: 1.5;
-  margin-top: 20px;
-  display: none;
+  margin-top: 1em;
   opacity: 0;
   transition: opacity 0.5s ease;
+}
+
+.explanation-box.visible {
+  opacity: 1;
+}
+
+#startMessage {
+  color: #d4c6fc;
+  margin-top: 1em;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#startMessage.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
