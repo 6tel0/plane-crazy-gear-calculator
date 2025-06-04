@@ -1,4 +1,9 @@
 function calculate() {
+  // Hide the start message on first calculation
+  document.getElementById('startMessage').style.display = 'none';
+
+
+function calculate() {
   const n = parseFloat(document.getElementById('teeth').value);
   const currentOffsetInput = document.getElementById('currentOffset').value;
   const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
