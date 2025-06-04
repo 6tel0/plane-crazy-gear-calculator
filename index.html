@@ -18,11 +18,6 @@
   
   <button onclick="calculate()">Calculate</button>
 
-  <!-- Start message shown before calculation -->
-  <div id="startMessage" style="margin-top: 1em; color: #b39ddb;">
-    Enter your gear details above and click Calculate to get started!
-  </div>
-
   <h2>Results:</h2>
   <div id="results">
     <div class="result-box" id="teethResult"></div>
@@ -32,7 +27,7 @@
     <div class="result-box" id="offsetResult"></div>
   </div>
 
-  <div id="explanationBox" style="display:none; margin-top: 20px;" class="explanation-box">
+  <div id="explanationBox" class="explanation-box" style="opacity: 0; transition: opacity 0.5s ease;">
     <h3>Explanation</h3>
     <p id="explanationText"></p>
   </div>
@@ -46,4 +41,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
