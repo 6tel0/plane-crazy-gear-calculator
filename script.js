@@ -1,9 +1,4 @@
 function calculate() {
-  // Hide the start message on first calculation
-  document.getElementById('startMessage').style.display = 'none';
-
-
-function calculate() {
   const n = parseFloat(document.getElementById('teeth').value);
   const currentOffsetInput = document.getElementById('currentOffset').value;
   const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
@@ -17,6 +12,12 @@ function calculate() {
     return;
   }
 
+  // Hide the start message with fade
+  const msg = document.getElementById('startMessage');
+  if (msg && !msg.classList.contains('hidden')) {
+    msg.classList.add('hidden');
+  }
+
   const a = 360 / n;
   const b = a / 2;
   const r = Math.cos(toRad(b)) / Math.sin(toRad(a));
@@ -28,13 +29,13 @@ function calculate() {
   document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
   document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
 
-  // Fade in explanation
-  const explanationBox = document.getElementById('explanationBox');
-  explanationBox.style.opacity = 0; // reset opacity for fade
-  explanationBox.style.display = 'block';
-  setTimeout(() => {
-    explanationBox.style.opacity = 1;
-  }, 10);
+  // Show result section with fade
+  document.getElementById('results').classList.add('visible');
+
+  // Explanation
+  const expBox = document.getElementById('explanationBox');
+  expBox.style.display = 'block';
+  expBox.classList.add('visible');
 
   document.getElementById('explanationText').innerHTML = `
     <b>How it works:</b><br>
@@ -47,7 +48,7 @@ function calculate() {
     <code>r = cos(b) / sin(a) = ${r.toFixed(6)}</code><br><br>
 
     Finally, the compressor offset is:<br>
-    <code>Offset = r - current offset = ${r.toFixed(6)} - ${currentOffset} = ${(r - currentOffset).toFixed(6)}</code><br><br>
+    <code>Offset = 1 - r + current offset = 1 - ${r.toFixed(6)} + ${currentOffset} = ${offset.toFixed(6)}</code><br><br>
 
     This tells you how much to compress to perfectly align your gear in Plane Crazy.
   `;
@@ -56,4 +57,3 @@ function calculate() {
 function toRad(deg) {
   return deg * (Math.PI / 180);
 }
-
