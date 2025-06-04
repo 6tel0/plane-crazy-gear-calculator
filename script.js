@@ -1,10 +1,4 @@
 function calculate() {
-  // Hide the start message when calculation begins
-  const startMsg = document.getElementById('startMessage');
-  if (startMsg) {
-    startMsg.style.display = 'none';
-  }
-
   const n = parseFloat(document.getElementById('teeth').value);
   const currentOffsetInput = document.getElementById('currentOffset').value;
   const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
@@ -29,8 +23,14 @@ function calculate() {
   document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
   document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
 
-  // Show explanation
-  document.getElementById('explanationBox').style.display = 'block';
+  // Fade in explanation
+  const explanationBox = document.getElementById('explanationBox');
+  explanationBox.style.opacity = 0; // reset opacity for fade
+  explanationBox.style.display = 'block';
+  setTimeout(() => {
+    explanationBox.style.opacity = 1;
+  }, 10);
+
   document.getElementById('explanationText').innerHTML = `
     <b>How it works:</b><br>
     You entered <b>${n}</b> teeth. First, we calculate the angle per tooth:<br>
@@ -51,3 +51,4 @@ function calculate() {
 function toRad(deg) {
   return deg * (Math.PI / 180);
 }
+
