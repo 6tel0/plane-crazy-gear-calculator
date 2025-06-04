@@ -1,6 +1,9 @@
 function calculate() {
-  // Peida algus-sõnum
-  document.getElementById('startMessage').style.display = 'none';
+  // Hide the start message when calculation begins
+  const startMsg = document.getElementById('startMessage');
+  if (startMsg) {
+    startMsg.style.display = 'none';
+  }
 
   const n = parseFloat(document.getElementById('teeth').value);
   const currentOffsetInput = document.getElementById('currentOffset').value;
@@ -26,7 +29,7 @@ function calculate() {
   document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
   document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
 
-  // Näita seletust
+  // Show explanation
   document.getElementById('explanationBox').style.display = 'block';
   document.getElementById('explanationText').innerHTML = `
     <b>How it works:</b><br>
@@ -48,5 +51,3 @@ function calculate() {
 function toRad(deg) {
   return deg * (Math.PI / 180);
 }
-
-  
