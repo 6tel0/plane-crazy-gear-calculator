@@ -59,3 +59,13 @@ h1, h2 {
   font-weight: 600;
   white-space: pre-wrap;
 }
+
+
+.explanation-box {
+  background-color: #2e004f; /* dark purple */
+  color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  line-height: 1.5;
+}
