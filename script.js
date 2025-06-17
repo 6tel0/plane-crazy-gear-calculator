@@ -12,6 +12,12 @@ function calculate() {
     return;
   }
 
+  // Hide the start message with fade
+  const msg = document.getElementById('startMessage');
+  if (msg && !msg.classList.contains('hidden')) {
+    msg.classList.add('hidden');
+  }
+
   const a = 360 / n;
   const b = a / 2;
   const r = Math.cos(toRad(b)) / Math.sin(toRad(a));
@@ -23,11 +29,15 @@ function calculate() {
   document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
   document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
 
-  // Show explanation with fade
-  const explanationBox = document.getElementById('explanationBox');
-  const explanationText = document.getElementById('explanationText');
-  
-  explanationText.innerHTML = `
+  // Show result section with fade
+  document.getElementById('results').classList.add('visible');
+
+  // Explanation
+  const expBox = document.getElementById('explanationBox');
+  expBox.style.display = 'block';
+  expBox.classList.add('visible');
+
+  document.getElementById('explanationText').innerHTML = `
     <b>How it works:</b><br>
     You entered <b>${n}</b> teeth. First, we calculate the angle per tooth:<br>
     <code>a = 360 / n = ${a.toFixed(4)}</code><br>
@@ -42,16 +52,6 @@ function calculate() {
 
     This tells you how much to compress to perfectly align your gear in Plane Crazy.
   `;
-
-  explanationBox.style.opacity = 0;
-  explanationBox.style.display = 'block';
-
-  let opacity = 0;
-  const fadeIn = setInterval(() => {
-    if (opacity >= 1) clearInterval(fadeIn);
-    opacity += 0.05;
-    explanationBox.style.opacity = opacity;
-  }, 30);
 }
 
 function toRad(deg) {
