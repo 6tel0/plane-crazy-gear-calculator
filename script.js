@@ -1,47 +1,46 @@
-function calculate() {
-  const n = parseFloat(document.getElementById('teeth').value);
-  const currentOffsetInput = document.getElementById('currentOffset').value;
-  const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plane Crazy Gear Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Gear Calculator for Plane Crazy</h1>
 
-  if (n <= 0 || isNaN(n)) {
-    alert("Enter a valid number of teeth");
-    return;
-  }
-  if (isNaN(currentOffset)) {
-    alert("Enter a valid number for current offset");
-    return;
-  }
+  <label>Number of Teeth (n):
+    <input type="number" id="teeth" value="8" min="1" />
+  </label>
+  
+  <label>Current Offset (optional):
+    <input type="number" id="currentOffset" placeholder="Enter offset (default 0)" />
+  </label>
+  
+  <button onclick="calculate()">Calculate</button>
 
-  const a = 360 / n;
-  const b = a / 2;
-  const r = Math.cos(toRad(b)) / Math.sin(toRad(a));
-  const offset = r - currentOffset;
+  <div id="startMessage">Enter your gear details above and click Calculate to get started!</div>
 
-  document.getElementById('teethResult').textContent = `Number of Teeth (n):\n${n}`;
-  document.getElementById('angleResult').textContent = `Angle per Tooth (a):\n${a.toFixed(4)}°`;
-  document.getElementById('halfAngleResult').textContent = `Half-Angle (b):\n${b.toFixed(4)}°`;
-  document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
-  document.getElementById('offsetResult').textContent = `Compressor Offset (r - current offset):\n${offset.toFixed(6)}`;
+  <h2>Results:</h2>
+  <div id="results" class="fade" style="display: none;">
+    <div class="result-box" id="teethResult"></div>
+    <div class="result-box" id="angleResult"></div>
+    <div class="result-box" id="halfAngleResult"></div>
+    <div class="result-box" id="radiusResult"></div>
+    <div class="result-box" id="offsetResult"></div>
+  </div>
 
-  // Show explanation
-  document.getElementById('explanationBox').style.display = 'block';
-  document.getElementById('explanationText').innerHTML = `
-    <b>How it works:</b><br>
-    You entered <b>${n}</b> teeth. First, we calculate the angle per tooth:<br>
-    <code>a = 360 / n = ${a.toFixed(4)}</code><br>
-    Then we find the half-angle:<br>
-    <code>b = a / 2 = ${b.toFixed(4)}</code><br><br>
+  <div id="explanationBox" style="display:none;" class="explanation-box fade">
+    <h3>Explanation</h3>
+    <p id="explanationText"></p>
+  </div>
 
-    We use this to get the radius of the gear circle using trigonometry:<br>
-    <code>r = cos(b) / sin(a) = ${r.toFixed(6)}</code><br><br>
+  <footer>
+    <p>
+      Made by <a href="https://www.youtube.com/@6tel0" target="_blank" rel="noopener">6tel0</a> |
+      Thanks for using the gear calculator!
+    </p>
+  </footer>
 
-    Finally, the compressor offset is:<br>
-    <code>Offset = r - current offset = ${r.toFixed(6)} - ${currentOffset} = ${offset.toFixed(6)}</code><br><br>
-
-    This tells you how much to compress to perfectly align your gear in Plane Crazy.
-  `;
-}
-
-function toRad(deg) {
-  return deg * (Math.PI / 180);
-}
+  <script src="script.js"></script>
+</body>
+</html>
