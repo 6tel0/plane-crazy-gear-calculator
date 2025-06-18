@@ -93,3 +93,7 @@ h1, h2 {
   opacity: 0;
   pointer-events: none;
 }
+#results, #explanationBox {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
