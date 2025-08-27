@@ -1,12 +1,177 @@
-<div id="results">
-  <div class="result-box" id="teethResult"></div>
-  <div class="result-box" id="angleResult"></div>
-  <div class="result-box" id="halfAngleResult"></div>
-  <div class="result-box" id="radiusResult"></div>
-  <div class="result-box" id="offsetResult"></div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plane Crazy Gear Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 2em;
+      background-color: #2e0854;
+      color: #d4c6fc;
+      text-align: center;
+    }
 
-<div id="explanationBox" style="display:none; margin-top: 20px;" class="explanation-box">
-  <h3>Explanation</h3>
-  <p id="explanationText"></p>
-</div>
+    input {
+      width: 80px;
+      margin-left: 0.5em;
+      border-radius: 5px;
+      border: none;
+      padding: 0.3em 0.5em;
+      font-size: 1em;
+      background-color: #4b2979;
+      color: #d4c6fc;
+    }
+
+    input::placeholder {
+      color: #b39ddb;
+    }
+
+    button {
+      margin-left: 1em;
+      padding: 0.5em 1em;
+      background-color: #6a4bcf;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #8e6ff5;
+    }
+
+    h1, h2 {
+      margin-bottom: 1em;
+    }
+
+    #results {
+      margin-top: 1em;
+      display: none;
+      flex-wrap: wrap;
+      gap: 1em;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    #results.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .result-box {
+      flex: 1 1 200px;
+      background-color: #4b2979;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #6a4bcf88;
+      min-width: 180px;
+      color: #e0dfff;
+      font-weight: 600;
+      white-space: pre-wrap;
+    }
+
+    .explanation-box {
+      display: none;
+      margin-top: 1em;
+      background-color: #2e004f;
+      color: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      line-height: 1.5;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .explanation-box.show {
+      display: block;
+      opacity: 1;
+    }
+
+    #startMessage {
+      margin-top: 2em;
+      font-size: 1.1em;
+      color: #cbb8ff;
+    }
+  </style>
+</head>
+<body>
+  <h1>Plane Crazy Gear Calculator</h1>
+  <div>
+    <label>Teeth: <input type="number" id="teeth" placeholder="e.g. 8"></label>
+    <label>Current Offset: <input type="number" id="currentOffset" placeholder="0"></label>
+    <button onclick="calculate()">Calculate</button>
+  </div>
+
+  <div id="startMessage">Enter your gear details above and click Calculate to get started!</div>
+
+  <div id="results">
+    <div class="result-box" id="teethResult"></div>
+    <div class="result-box" id="angleResult"></div>
+    <div class="result-box" id="halfAngleResult"></div>
+    <div class="result-box" id="radiusResult"></div>
+    <div class="result-box" id="offsetResult"></div>
+  </div>
+
+  <div class="explanation-box" id="explanationBox">
+    <div id="explanationText"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const n = parseFloat(document.getElementById('teeth').value);
+      const currentOffsetInput = document.getElementById('currentOffset').value;
+      const currentOffset = currentOffsetInput ? parseFloat(currentOffsetInput) : 0;
+
+      if (n <= 0 || isNaN(n)) {
+        alert("Enter a valid number of teeth");
+        return;
+      }
+      if (isNaN(currentOffset)) {
+        alert("Enter a valid number for current offset");
+        return;
+      }
+
+      const a = 360 / n;
+      const b = a / 2;
+      const r = Math.cos(toRad(b)) / Math.sin(toRad(a));
+      const offset = 1 - r + currentOffset;
+
+      document.getElementById('teethResult').textContent = `Number of Teeth (n):\n${n}`;
+      document.getElementById('angleResult').textContent = `Angle per Tooth (a):\n${a.toFixed(4)}°`;
+      document.getElementById('halfAngleResult').textContent = `Half-Angle (b):\n${b.toFixed(4)}°`;
+      document.getElementById('radiusResult').textContent = `Radius (r):\n${r.toFixed(6)}`;
+      document.getElementById('offsetResult').textContent = `Compressor Offset (1 - r + current offset):\n${offset.toFixed(6)}`;
+
+      document.getElementById('results').classList.add('show');
+      document.getElementById('startMessage').style.display = 'none';
+      document.getElementById('explanationBox').classList.add('show');
+
+      document.getElementById('explanationText').innerHTML = `
+        <b>How it works:</b><br>
+        You entered <b>${n}</b> teeth. First, we calculate the angle per tooth:<br>
+        <code>a = 360 / n = ${a.toFixed(4)}</code><br>
+        Then we find the half-angle:<br>
+        <code>b = a / 2 = ${b.toFixed(4)}</code><br><br>
+
+        We use this to get the radius of the gear circle using trigonometry:<br>
+        <code>r = cos(b) / sin(a) = ${r.toFixed(6)}</code><br><br>
+
+        Finally, the compressor offset is:<br>
+        <code>Offset = 1 - r + current offset = 1 - ${r.toFixed(6)} + ${currentOffset} = ${(offset).toFixed(6)}</code><br><br>
+
+        This tells you how much to compress to perfectly align your gear in Plane Crazy.
+      `;
+    }
+
+    function toRad(deg) {
+      return deg * (Math.PI / 180);
+    }
+  </script>
+</body>
+</html>
